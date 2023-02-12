@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: 'CustomFont', metropolis;
+}
+
+.auth-container {
+    height: 100vh;
+    background-image: url('../images/bg-body.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.auth-span-info{
+    font-size: 12px;
+}
+
+.card-auth{
+    width: 30%;
+}
+
+@font-face {
+    font-family: 'metropolis';
+    src: url('/fonts/metropolis.regular-webfont.woff2') format('woff2'), url('/fonts/metropolis.regular-webfont.woff') format('woff');
+    /* font-weight: normal;
+    font-style: normal; */
+}
