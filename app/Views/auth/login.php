@@ -5,7 +5,7 @@
     <h5>Electicity Payment</h5>
     <span>Please Login</span>
 </div>
-<form action="">
+<form action="/login" method="post">
     <div class="input-group mb-3">
         <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" required>
     </div>
