@@ -11,7 +11,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('DashboardController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -29,11 +29,12 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index', ['filter' => 'authGuard']);
+$routes->get('/', 'DashboardController::index', ['filter' => 'authGuard']);
 
 // Route with login
 $routes->get('/login', 'LoginController::index', ['filter' => 'userGuard']);
 $routes->post('/login', 'LoginController::login');
+$routes->post('/logout', 'LoginController::logout');
 $routes->get('/register', 'RegisterController::index', ['filter' => 'userGuard']);
 
 // Route without login
