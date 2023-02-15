@@ -2,7 +2,7 @@
 
 <?= $this->section('main-content') ?>
 <div class="wrapper d-flex align-items-stretch">
-    <nav id="sidebar">
+    <nav id="sidebar" class="nav-dashboard">
         <div class="custom-menu">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
                 <i class="fa fa-bars"></i>
@@ -17,6 +17,9 @@
                         <a href="#"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
                     </li>
                     <li>
+                        <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
+                    </li>
+                    <li>
                         <a href="#"><span class="fa fa-users mr-3"></span>Manage Customer</a>
                     </li>
                     <li>
@@ -25,23 +28,27 @@
                     <li>
                         <a href="#"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
                     </li>
-                    <li>
-                        <a href="#"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
-                    </li>
-                    <li>
-                        <a href=""><span class="fa fa-power-off mr-3"></span>Logout</a>
-                    </li>
+                    <?php if (session()->get('role') == 'pelanggan') : ?>
+                        <li>
+                            <a href="#"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
 
             <div class="footer">
+                <div class="text-center">
+                    <p>Login sebagai <?= session()->get('name') ?> | <?= session()->get('role') ?></p>
+                </div>
                 <form action="/logout" method="post" class="mb-3">
                     <button class="btn btn-danger w-100"><span class="fa fa-power-off"></span> Logout</button>
                 </form>
-                <p>Copyright &copy;<script>
-                        document.write(new Date().getFullYear());
-                    </script><br>Made with <i class="fa fa-heart mr-1 ml-1"></i> by Lisa Agustina
-                </p>
+                <div class="text-center">
+                    <p>Copyright &copy;<script>
+                            document.write(new Date().getFullYear());
+                        </script><br>Made with <i class="fa fa-heart mr-1 ml-1"></i> by Lisa Agustina
+                    </p>
+                </div>
             </div>
 
         </div>

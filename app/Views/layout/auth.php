@@ -9,6 +9,11 @@
                     <div class="card-body p-5 text-center">
                         <img src="/images/energy.png" alt="logo" width="100px">
                         <?= $this->renderSection('auth-content') ?>
+                        <?php if (session()->getFlashdata('err-auth')) : ?>
+                            <div class="alert alert-danger mt-3">
+                                <?= session()->getFlashdata('err-auth') ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
