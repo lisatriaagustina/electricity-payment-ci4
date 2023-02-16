@@ -20,7 +20,7 @@ class AdminController extends BaseController
         // custom validasi
         if (!$this->validate([
             'name'      => 'required',
-            'username'  => 'required|is_unique[admin.username]',
+            'username'  => 'required|is_unique[admin.username]|is_unique[customers.username]',
             'password'  => 'required',
             'role'      => 'required'
         ])) {

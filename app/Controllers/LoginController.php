@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Admin;
+use App\Models\Customers;
 
 class LoginController extends BaseController
 {
@@ -35,7 +36,7 @@ class LoginController extends BaseController
         // panggil model / tabel admin dan cari user, digabung dengan tabel roles untuk mengambil nama role nya
         $adminModel = new Admin();
         $user = $adminModel->where('username', $username)->join('roles', 'roles.id_role = admin.id_role', 'left')->first();
-        if($user){
+        if ($user) {
             $data_session = [
                 'id_user'   => $user['id_admin'],
                 'username'  => $user['username'],
@@ -46,11 +47,21 @@ class LoginController extends BaseController
         }
 
         // jika user pada tabel admin tidak ditemukan cari di tabel pelanggan
-        // if (!$user) {
-        //     // panggil model / tabel pelanggan dan cari user, digabung dengan tabel roles untuk mengambil nama role nya
-        //     $adminModel = new Admin();
-        //     $user = $adminModel->where('username', $username)->join('roles', 'roles.id_role = admin.id_role', 'left')->first();
-        // }
+        if (!$user) {
+            // panggil model / tabel pelanggan dan cari user, digabung dengan tabel roles untuk mengambil nama role nya
+            $customersModel = new Customers();
+            $user = $customersModel->where('username', $username)->first();
+            if ($user) {
+                $data_session = [
+                    'id_user'   => $user['id_customer'],
+                    'username'  => $user['username'],
+                    'name'      => $user['name'],
+                    'address'      => $user['address'],
+                    'role'      => 'customer',
+                    'IS_LOGIN'  => true
+                ];
+            }
+        }
 
         // Jika user tidak ditemukan pada 2 tabel maka kembalikan ke halaman login dengan pesan username tidak ditemukan
         if (!$user) {
@@ -59,7 +70,7 @@ class LoginController extends BaseController
         }
 
         // Jika user ketemu, maka cek passwordnya menggunakan sistem ci4 apakah benar ? Kalau iya simpan data user di sistem ci4 / session lalu pindahkan ke dashboard
-        if(password_verify($password, $user['password'])){
+        if (password_verify($password, $user['password'])) {
             $session->set($data_session);
             return redirect()->to('/');
         }

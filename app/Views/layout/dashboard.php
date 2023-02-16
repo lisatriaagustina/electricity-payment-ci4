@@ -13,26 +13,49 @@
             <div class="">
                 <h1><a href="index.html" class="logo">EL-Payment <span>Electicity Payment</span></a></h1>
                 <ul class="list-unstyled components mb-5">
-                    <li class="active">
-                        <a href="#"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="fa fa-users mr-3"></span>Manage Customer</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
-                    </li>
-                    <?php if (session()->get('role') == 'pelanggan') : ?>
+
+                    <!-- menu admin -->
+                    <?php if (session()->get('role') == 'admin') : ?>
+                        <li class="active">
+                            <a href="/"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
+                        </li>
+                        <li>
+                            <a href="/manage-customer"><span class="fa fa-users mr-3"></span>Manage Customer</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <!-- menu bank -->
+                    <?php if (!session()->get('role') == 'bank') : ?>
+                        <li class="active">
+                            <a href="#"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
+                        </li>
+                        <li>
+                            <a href="/verivication-and-validation"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
+                        </li>
+                        <li>
+                            <a href="/generate-report"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
+                        </li>
+                    <?php endif; ?>
+
+                    <!-- menu customer -->
+                    <?php if (session()->get('role') == 'customer') : ?>
                         <li>
                             <a href="#"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
                         </li>
                     <?php endif; ?>
+
                 </ul>
             </div>
 

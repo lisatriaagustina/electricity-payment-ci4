@@ -36,12 +36,15 @@ $routes->get('/login', 'LoginController::index', ['filter' => 'userGuard']);
 $routes->post('/login', 'LoginController::login');
 $routes->post('/logout', 'LoginController::logout');
 $routes->get('/register', 'RegisterController::index', ['filter' => 'userGuard']);
+$routes->post('/register', 'RegisterController::addCustomer');
 
 // Route with login
 
 // Route with login admin
 $routes->get('/manage-admin', 'AdminController::manageAdmin');
 $routes->post('/manage-admin', 'AdminController::addAdmin');
+$routes->get('/manage-customer', 'CustomerController::index');
+$routes->post('/manage-customer', 'RegisterController::addCustomer');
 
 /*
  * --------------------------------------------------------------------

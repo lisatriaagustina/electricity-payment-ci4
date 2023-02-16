@@ -6,7 +6,7 @@
     <h5>Electicity Payment</h5>
     <span>Register new account</span>
 </div>
-<form action="">
+<form action="/register" method="post">
     <div class="input-group mb-3">
         <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" required>
     </div>
@@ -16,15 +16,24 @@
     </div>
 
     <div class="input-group mb-3">
-        <input type="input" name="nomor kWh" class="form-control" placeholder="nomor kWh" aria-label="nomor kWh" required>
+        <select class="form-control" name="rates" required>
+            <option value="">--Select Rates--</option>
+            <?php foreach ($rates as $rate) : ?>
+                <option value="<?= $rate['id_rates'] ?>"><?= $rate['class'] ?> - <?= $rate['power'] ?> - <?= "Rp " . number_format($rate['ratesperkwh'],2,',','.') ?></option>
+            <?php endforeach; ?>
+        </select>
     </div>
 
     <div class="input-group mb-3">
-        <input type="input" name="Nama" class="form-control" placeholder="Nama" aria-label="Nama" required>
+        <input type="input" name="kwh_number" class="form-control" placeholder="nomor kWh" aria-label="nomor kWh" required>
     </div>
 
     <div class="input-group mb-3">
-        <textarea class="form-control" placeholder="Alamat..." rows="3" required></textarea>
+        <input type="input" name="name" class="form-control" placeholder="Name" aria-label="Nama" required>
+    </div>
+
+    <div class="input-group mb-3">
+        <textarea class="form-control" placeholder="Address..." rows="3" name="address" required></textarea>
     </div>
 
     <button class="btn btn-primary btn-block w-100" type="submit">Register</button>
