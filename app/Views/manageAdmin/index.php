@@ -14,7 +14,7 @@
             <th scope="col">Name</th>
             <th scope="col">Username</th>
             <th scope="col">Role</th>
-            <th scope="col">Action</th>
+            <!-- <th scope="col">Action</th> -->
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
                     <td><?= $admin['name'] ?></td>
                     <td><?= $admin['username'] ?></td>
                     <td><?= $admin['role_name'] ?></td>
-                    <td>...</td>
+                    <!-- <td>...</td> -->
                 </tr>
             <?php endforeach; ?>
         <?php endif ?>

@@ -16,7 +16,7 @@
 
                     <!-- menu admin -->
                     <?php if (session()->get('role') == 'admin') : ?>
-                        <li class="active">
+                        <li class="">
                             <a href="/"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
                         </li>
                         <li>
@@ -35,7 +35,7 @@
 
                     <!-- menu bank -->
                     <?php if (!session()->get('role') == 'bank') : ?>
-                        <li class="active">
+                        <li class="">
                             <a href="#"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
                         </li>
                         <li>

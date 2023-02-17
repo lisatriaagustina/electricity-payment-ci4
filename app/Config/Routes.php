@@ -45,6 +45,7 @@ $routes->get('/manage-admin', 'AdminController::manageAdmin');
 $routes->post('/manage-admin', 'AdminController::addAdmin');
 $routes->get('/manage-customer', 'CustomerController::index');
 $routes->post('/manage-customer', 'RegisterController::addCustomer');
+$routes->put('/manage-customer/(:any)', 'CustomerController::updateCustomer/$1');
 
 /*
  * --------------------------------------------------------------------
