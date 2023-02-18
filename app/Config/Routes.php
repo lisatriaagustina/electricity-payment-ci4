@@ -47,6 +47,9 @@ $routes->get('/manage-customer', 'CustomerController::index');
 $routes->post('/manage-customer', 'RegisterController::addCustomer');
 $routes->put('/manage-customer/(:any)', 'CustomerController::updateCustomer/$1');
 
+$routes->get('/verification-and-validation', 'VerifValidationController::index');
+
+$routes->get('/generate-report', 'GenerateReportController::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

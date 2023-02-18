@@ -26,10 +26,10 @@
                             <a href="/manage-customer"><span class="fa fa-users mr-3"></span>Manage Customer</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
+                            <a href="/verification-and-validation"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
                         </li>
                         <li>
-                            <a href="#"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
+                            <a href="/generate-report"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
                         </li>
                     <?php endif; ?>
 

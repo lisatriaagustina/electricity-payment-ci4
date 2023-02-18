@@ -21,12 +21,11 @@ class CustomerController extends BaseController
 
     public function updateCustomer($param)
     {
-        dd($param);
+        $customerModel = new Customers();
         $session = session();
         // custom validasi
         if (!$this->validate([
             'username'      => 'required|is_unique[admin.username]|is_unique[customers.username]',
-            'password'      => 'required',
             'rates'         => 'required',
             'kwh_number'    => 'required',
             'name'          => 'required',
@@ -35,5 +34,18 @@ class CustomerController extends BaseController
             $session->setFlashdata('err-auth', $this->validator->listErrors());
             return redirect()->to('/manage-customer')->withInput();
         }
+
+        $data = $customerModel->find($param);
+
+        $data['username'] = $this->request->getVar('username');
+        $data['name'] = $this->request->getVar('name');
+        $data['id_rates'] = $this->request->getVar('rates');
+        $data['kwh_number'] = $this->request->getVar('kwh_number');
+        $data['address'] = $this->request->getVar('address');
+        $data['id_update'] = session()->get('id_user');
+        // dd($data);
+
+        $customerModel->update($param, $data);
+        return redirect()->to('/manage-customer');
     }
 }
