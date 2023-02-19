@@ -35,7 +35,7 @@
                     <td><?= $customer['class'] ?></td>
                     <td><?= $customer['class_code'] ?></td>
                     <td><?= $customer['power'] ?></td>
-                    <td><?= $customer['ratesperkwh'] ?></td>
+                    <td><?= "Rp " . number_format($customer['ratesperkwh'], 2, ',', '.') ?></td>
                     <td>
                         <button class="btn" data-bs-toggle="modal" data-bs-target="#edit-user-<?= $customer['id_customer'] ?>">
                             <img src="/images/edit-user.png" width="25px">
@@ -62,7 +62,7 @@
                                                 <select class="form-control" name="rates" required>
                                                     <option>--Select Rates--</option>
                                                     <?php foreach ($rates as $rate) : ?>
-                                                        <option value="<?= $rate['id_rates'] ?>" <?= $rate['id_rates'] == $customer['id_rates']? "selected":"" ?>><?= $rate['class'] ?> - <?= $rate['power'] ?> - <?= "Rp " . number_format($rate['ratesperkwh'], 2, ',', '.') ?></option>
+                                                        <option value="<?= $rate['id_rates'] ?>" <?= $rate['id_rates'] == $customer['id_rates'] ? "selected" : "" ?>><?= $rate['class'] ?> - <?= $rate['power'] ?> - <?= "Rp " . number_format($rate['ratesperkwh'], 2, ',', '.') ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>

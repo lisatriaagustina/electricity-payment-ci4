@@ -42,7 +42,7 @@
                             <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
                         </li>
                         <li>
-                            <a href="/verivication-and-validation"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
+                            <a href="/verification-and-validation"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
                         </li>
                         <li>
                             <a href="/generate-report"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
