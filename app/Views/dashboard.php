@@ -6,7 +6,9 @@
     <h2 class="mb-4">Dashboard Admin</h2>
     <div class="row d-flex justify-content-between">
         <div class="col text-right">
-            <button class="btn btn-primary mb-3">Generate Penggunaan Untuk Semua User</button>
+            <form action="/" method="post">
+                <button type="submit" class="btn btn-primary mb-3">Generate Penggunaan Untuk Semua User</button>
+            </form>
         </div>
     </div>
     <div class="row">
