@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label">kWh Number</label>
-                                                    <input type="input" name="kwh_number" class="form-control" placeholder="Enter kWh Number" aria-label="nomor kWh" required value="<?= $customer['kwh_number'] ?>">
+                                                    <input type="input" name="kwh_number" class="form-control" placeholder="Enter kWh Number" required value="<?= $customer['kwh_number'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label">Address</label>

@@ -14,6 +14,7 @@
             <th scope="col">Meter</th>
             <th scope="col">Bill</th>
             <th scope="col">Status</th>
+            <th scope="col">#</th>
         </tr>
     </thead>
     <tbody>
@@ -28,8 +29,11 @@
                     <td><?= $bill['month'] ?></td>
                     <td><?= $bill['year'] ?></td>
                     <td><?= $bill['final_meter'] - $bill['initial_meter'] ?></td>
-                    <td><?= "Rp " . number_format($bill['amount'], 2, ',', '.') ?></td>
+                    <td><?= "Rp " . number_format($bill['ratesperkwh'] * ($bill['final_meter'] - $bill['initial_meter']), 2, ',', '.') ?></td>
                     <td><?= $bill['status'] ?></td>
+                    <td>
+                        <a href="/verification-and-validation/<?= $bill['id_bill'] ?>" class="btn btn-primary" style="color:white;">Detail</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php endif ?>

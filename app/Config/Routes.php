@@ -49,6 +49,7 @@ $routes->post('/manage-customer', 'RegisterController::addCustomer');
 $routes->put('/manage-customer/(:any)', 'CustomerController::updateCustomer/$1');
 
 $routes->get('/verification-and-validation', 'VerifValidationController::index');
+$routes->get('/verification-and-validation/(:any)', 'VerifValidationController::viewVerif/$1');
 
 $routes->get('/generate-report', 'GenerateReportController::index');
 /*

@@ -36,6 +36,7 @@ class CustomerController extends BaseController
         }
 
         $data = $customerModel->find($param);
+        // dd($data);
 
         $data['username'] = $this->request->getVar('username');
         $data['name'] = $this->request->getVar('name');
@@ -43,7 +44,7 @@ class CustomerController extends BaseController
         $data['kwh_number'] = $this->request->getVar('kwh_number');
         $data['address'] = $this->request->getVar('address');
         $data['id_update'] = session()->get('id_user');
-        // dd($data);
+        dd($data);
 
         $customerModel->update($param, $data);
         return redirect()->to('/manage-customer');

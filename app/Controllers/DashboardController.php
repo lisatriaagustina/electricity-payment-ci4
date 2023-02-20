@@ -62,7 +62,7 @@ class DashboardController extends BaseController
             $billData = [
                 'id_uses'       => $usesModel->getInsertID(),
                 'id_customer'   => $customer['id_customer'],
-                'amount'        => $customer['ratesperkwh'] * ($final_meter - $initial_meter),
+                // 'amount'        => $customer['ratesperkwh'] * ($final_meter - $initial_meter),
                 'id_rekam'      => $session->get('id_user'),
                 'id_update'     => $session->get('id_user')
             ];
