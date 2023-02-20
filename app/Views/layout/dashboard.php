@@ -38,9 +38,9 @@
                         <li class="">
                             <a href="#"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="/verification-and-validation"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
                         </li>
@@ -52,7 +52,7 @@
                     <!-- menu customer -->
                     <?php if (session()->get('role') == 'customer') : ?>
                         <li>
-                            <a href="#"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
+                            <a href="/pay-electricity"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
                         </li>
                     <?php endif; ?>
 

@@ -35,16 +35,20 @@ class CustomerController extends BaseController
             return redirect()->to('/manage-customer')->withInput();
         }
 
-        $data = $customerModel->find($param);
-        // dd($data);
+        $user = $customerModel->find($param);
 
-        $data['username'] = $this->request->getVar('username');
-        $data['name'] = $this->request->getVar('name');
-        $data['id_rates'] = $this->request->getVar('rates');
-        $data['kwh_number'] = $this->request->getVar('kwh_number');
-        $data['address'] = $this->request->getVar('address');
-        $data['id_update'] = session()->get('id_user');
-        dd($data);
+        $data = [
+            'username'      => $this->request->getVar('username'),
+            'name'          => $this->request->getVar('name'),
+            'id_rates'      => $this->request->getVar('rates'),
+            'kwh_number'    => $this->request->getVar('kwh_number'),
+            'address'       => $this->request->getVar('address'),
+            'id_update'     => session()->get('id_user'),
+            'id_rekam'      => $user['id_rekam'],
+            'password'      => $user['password']
+        ];
+
+        // dd($data);
 
         $customerModel->update($param, $data);
         return redirect()->to('/manage-customer');
