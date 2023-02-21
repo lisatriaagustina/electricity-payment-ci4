@@ -24,31 +24,33 @@ class CustomerController extends BaseController
         $customerModel = new Customers();
         $session = session();
         // custom validasi
+        $user = $customerModel->find($param);
+        $lastusername = $user['username'];
+
         if (!$this->validate([
-            'username'      => 'required|is_unique[admin.username]|is_unique[customers.username]',
+            'username'      => 'required|is_unique[customers.username,customers.username,'.$lastusername.']|is_unique[admin.username,admin.username,'.$lastusername.']',
             'rates'         => 'required',
             'kwh_number'    => 'required',
             'name'          => 'required',
             'address'       => 'required',
         ])) {
-            $session->setFlashdata('err-auth', $this->validator->listErrors());
+            $session->setFlashdata('err-manage-customer', $this->validator->listErrors());
             return redirect()->to('/manage-customer')->withInput();
         }
 
         $user = $customerModel->find($param);
 
         $data = [
-            'username'      => $this->request->getVar('username'),
-            'name'          => $this->request->getVar('name'),
+            // 'id_customer'   => $param,
             'id_rates'      => $this->request->getVar('rates'),
+            'username'      => $this->request->getVar('username'),
+            'password'      => $user['password'],
             'kwh_number'    => $this->request->getVar('kwh_number'),
+            'name'          => $this->request->getVar('name'),
             'address'       => $this->request->getVar('address'),
-            'id_update'     => session()->get('id_user'),
             'id_rekam'      => $user['id_rekam'],
-            'password'      => $user['password']
+            'id_update'     => session()->get('id_user')
         ];
-
-        // dd($data);
 
         $customerModel->update($param, $data);
         return redirect()->to('/manage-customer');

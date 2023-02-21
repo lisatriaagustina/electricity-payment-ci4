@@ -46,12 +46,14 @@ $routes->get('/manage-admin', 'AdminController::manageAdmin');
 $routes->post('/manage-admin', 'AdminController::addAdmin');
 $routes->get('/manage-customer', 'CustomerController::index');
 $routes->post('/manage-customer', 'RegisterController::addCustomer');
-$routes->put('/manage-customer/(:any)', 'CustomerController::updateCustomer/$1');
+$routes->post('/update-customer/(:any)', 'CustomerController::updateCustomer/$1');
 
+$routes->post('/update-status-payment/(:any)', 'VerifValidationController::updatePayment/$1');
 $routes->get('/verification-and-validation', 'VerifValidationController::index');
 $routes->get('/verification-and-validation/(:any)', 'VerifValidationController::viewVerif/$1');
 
 $routes->get('/pay-electricity', 'PayElectricityController::index');
+$routes->post('/pay-electricity', 'PayElectricityController::pay');
 
 $routes->get('/generate-report', 'GenerateReportController::index');
 /*

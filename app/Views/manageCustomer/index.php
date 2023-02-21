@@ -7,6 +7,11 @@
         Register Customers
     </button>
 </div>
+<?php if (session()->getFlashdata('err-manage-customer')) : ?>
+    <div class="alert alert-danger mt-3 text-left">
+        <?= session()->getFlashdata('err-manage-customer') ?>
+    </div>
+<?php endif; ?>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -46,16 +51,16 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title">Edit Customer</h5>
                                     </div>
-                                    <form action="/manage-customer/<?= $customer['id_customer'] ?>" method="post">
-                                        <input type="hidden" name="_method" value="put">
+                                    <form action="/update-customer/<?= $customer['id_customer'] ?>" method="post">
+                                        <!-- <input type="hidden" name="_method" value="put"> -->
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="username">Username</label>
-                                                <input type="text" name="username" class="form-control" placeholder="Enter Username" aria-label="Username" value="<?= $customer['username'] ?>" required>
+                                                <input type="text" name="username" class="form-control" placeholder="Enter Username" value="<?= $customer['username'] ?>" required>
                                             </div>
                                             <div class="form-group">
-                                                <label">Name</label>
-                                                    <input type="input" class="form-control" placeholder="Enter Name" name="name" required value="<?= $customer['name'] ?>">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter Name" name="name" required value="<?= $customer['name'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Rates</label>
@@ -68,7 +73,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label">kWh Number</label>
-                                                    <input type="input" name="kwh_number" class="form-control" placeholder="Enter kWh Number" required value="<?= $customer['kwh_number'] ?>">
+                                                    <input type="text" name="kwh_number" class="form-control" placeholder="Enter kWh Number" required value="<?= $customer['kwh_number'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label">Address</label>

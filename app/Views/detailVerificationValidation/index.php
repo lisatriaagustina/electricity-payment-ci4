@@ -42,8 +42,12 @@
                     <div class="col">: <?= $detail_bill['final_meter'] - $detail_bill['initial_meter'] ?></div>
                 </div>
                 <div class="row">
+                    <div class="col-3 font-weight-bold">Admin Fee</div>
+                    <div class="col">: <?= "Rp " . number_format($admin_fee, 2, ',', '.') ?></div>
+                </div>
+                <div class="row">
                     <div class="col-3 font-weight-bold">Total Bill</div>
-                    <div class="col">: <?= "Rp " . number_format($detail_bill['ratesperkwh'] * ($detail_bill['final_meter'] - $detail_bill['initial_meter']), 2, ',', '.') ?></div>
+                    <div class="col">: <?= "Rp " . number_format(($detail_bill['ratesperkwh'] * ($detail_bill['final_meter'] - $detail_bill['initial_meter']) + $admin_fee), 2, ',', '.') ?></div>
                 </div>
                 <div class="row">
                     <div class="col-3 font-weight-bold">Status</div>
@@ -58,36 +62,56 @@
                 <h6 class="m-0 font-weight-bold text-primary">Payment details</h6>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-5 font-weight-bold">Payment time</div>
-                    <div class="col">: 10-10-2023</div>
-                </div>
-                <div class="row">
-                    <div class="col-5 font-weight-bold">Total payment</div>
-                    <div class="col">: <?= "Rp " . number_format($detail_bill['ratesperkwh'] * ($detail_bill['final_meter'] - $detail_bill['initial_meter']), 2, ',', '.') ?></div>
-                </div>
-                <div class="row">
-                    <div class="col-5 font-weight-bold">Proof of payment</div>
-                    <div class="col-7">: </div>
-                    <div class="col">
-                        <img data-bs-toggle="modal" data-bs-target="#modalImage" src="/images/tf-example.png" alt="payment" style="width: 35%; cursor: pointer">
+
+                <!-- PENDING -->
+                <?php if ($detail_bill['status'] == 'pending') : ?>
+                    <h3>The customer has not paid</h3>
+                <?php endif; ?>
+
+                <!-- PROCESS -->
+                <?php if ($detail_bill['status'] == 'process' || $detail_bill['status'] == 'success') : ?>
+                    <div class="row">
+                        <div class="col-5 font-weight-bold">Payment time</div>
+                        <div class="col">: <?= $detail_payment['pay_date'] ?></div>
                     </div>
-                    <div class="modal fade" id="modalImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Proof of payment</h5>
-                                </div>
-                                <div class="modal-body">
-                                <img src="/images/tf-example.png" alt="payment" style="width: 100%">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="row">
+                        <div class="col-5 font-weight-bold">Bank</div>
+                        <div class="col">: <?= $detail_payment['bank_name'] ?> - <?= $detail_payment['bank_acc_number'] ?> - <?= $detail_payment['bank_user'] ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 font-weight-bold">Total payment</div>
+                        <div class="col">: <?= "Rp " . number_format($detail_payment['total_pay'], 2, ',', '.') ?></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 font-weight-bold">Proof of payment</div>
+                        <div class="col-7">: </div>
+                        <div class="col">
+                            <img data-bs-toggle="modal" data-bs-target="#modalImage" src="<?= $detail_payment['picture'] ?>" alt="payment" style="width: 30%; cursor: pointer">
+                        </div>
+                        <div class="modal fade" id="modalImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Proof of payment</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="<?= $detail_payment['picture'] ?>" alt="payment" style="width: 100%">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-danger w-25">Reject</button>
+                        <form action="/update-status-payment/<?= $detail_payment['id_bill'] ?>" method="post" class="w-25">
+                            <button class="btn btn-primary w-100 ml-2">Accept</button>
+                        </form>
+                    </div>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
