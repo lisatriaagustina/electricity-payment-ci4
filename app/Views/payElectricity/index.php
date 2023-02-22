@@ -3,6 +3,7 @@
 <?= $this->section('dashboard-content') ?>
 <h2 class="mb-4">Pay Electricity</h2>
 <div class="row">
+    <?php if(isset($detail_bill)) : ?>
     <div class="col">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -134,7 +135,7 @@
                             <div class="col-5 font-weight-bold">Proof of payment</div>
                             <div class="col-7">: </div>
                             <div class="col">
-                                <input type="file" name="payPhoto" required/>
+                                <input type="file" name="payPhoto" required />
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
@@ -145,5 +146,8 @@
             </div>
         </div>
     </div>
+    <?php else : ?>
+        <h2>No Bill for now</h2>
+    <?php endif; ?>
 </div>
 <?= $this->endSection(); ?>
