@@ -30,6 +30,10 @@ class RegisterController extends BaseController
             'name'          => 'required',
             'address'       => 'required',
         ])) {
+            if ($session->get('IS_LOGIN')) {
+                session()->setFlashdata('err-add-customer', $this->validator->listErrors());
+                return redirect()->to('/manage-customer');
+            }
             session()->setFlashdata('err-auth', $this->validator->listErrors());
             return redirect()->to('/register')->withInput();
         }
@@ -56,6 +60,6 @@ class RegisterController extends BaseController
             return redirect()->to('/manage-customer');
         }
         // kembalikan ke halaman login
-        return view('auth/login');
+        return redirect()->to('/login');
     }
 }

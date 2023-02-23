@@ -7,6 +7,16 @@
         Register Admin
     </button>
 </div>
+<?php if (session()->getFlashdata('err-add-admin')) : ?>
+    <div class="alert alert-danger mt-3 text-left">
+        <?= session()->getFlashdata('err-add-admin') ?>
+    </div>
+<?php endif; ?>
+<?php if (session()->getFlashdata('msg-add-admin')) : ?>
+    <div class="alert alert-success mt-3 text-left">
+        <?= session()->getFlashdata('msg-add-admin') ?>
+    </div>
+<?php endif; ?>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -55,14 +65,14 @@
                         <label>Password</label>
                         <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="role">Role</label>
                         <select type="input" class="form-control" id="username" placeholder="Enter Username" name="role">
                             <option value="">--Select Role--</option>
                             <option value="1">Administrator</option>
                             <option value="2">Bank Admin</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

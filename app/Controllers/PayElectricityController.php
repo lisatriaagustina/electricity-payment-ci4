@@ -45,6 +45,8 @@ class PayElectricityController extends BaseController
         $paymentModel->save($data);
         $billModel->set('status', 'process')->where('id_bill', $this->request->getVar('id_bill'))->update();
 
+        session()->setFlashdata('msg-pay', 'Payment successful, please wait for admin confirmation.');
+
         return redirect()->to('/pay-electricity');
     }
 }

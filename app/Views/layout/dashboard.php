@@ -51,6 +51,9 @@
 
                     <!-- menu customer -->
                     <?php if (session()->get('role') == 'customer') : ?>
+                        <li class="">
+                            <a href="/"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
+                        </li>
                         <li>
                             <a href="/pay-electricity"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
                         </li>

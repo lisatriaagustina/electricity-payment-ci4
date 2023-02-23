@@ -22,10 +22,10 @@ class AdminController extends BaseController
             'name'      => 'required',
             'username'  => 'required|is_unique[admin.username]|is_unique[customers.username]',
             'password'  => 'required',
-            'role'      => 'required'
+            // 'role'      => 'required'
         ])) {
             session()->setFlashdata('err-add-admin', $this->validator->listErrors());
-            return redirect()->to('/login')->withInput();
+            return redirect()->to('/manage-admin')->withInput();
         }
 
         // ambil data dari form
@@ -34,7 +34,7 @@ class AdminController extends BaseController
             'username'  => $this->request->getVar('username'),
             // password di enkripsi secara default oleh sistem ci4
             'password'  => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
-            'id_role'   => $this->request->getVar('role')
+            // 'id_role'   => $this->request->getVar('role')
         ];
 
         // panggil model / tabel admin dari database dan simpan ke database
@@ -45,6 +45,6 @@ class AdminController extends BaseController
         session()->setFlashdata('msg-add-admin', 'Successfully added a new admin!');
 
         // kembalikan ke halaman manage admin
-        return view('manageAdmin/index');
+        return redirect()->to('/manage-admin');
     }
 }
