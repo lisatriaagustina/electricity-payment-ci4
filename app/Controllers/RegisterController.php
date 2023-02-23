@@ -47,11 +47,6 @@ class RegisterController extends BaseController
             'address'       => $this->request->getVar('address'),
         ];
 
-        // jika yg menambah costumer admin, maka tambah id rekam dari admin login
-        if ($session->get('IS_LOGIN')) {
-            $data['id_rekam'] = $session->get('id_admin');
-        }
-
         // panggil model / tabel customers dari database dan simpan ke database
         $customersModel = new Customers();
         $customersModel->save($data);

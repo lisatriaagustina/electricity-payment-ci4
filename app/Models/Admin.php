@@ -11,8 +11,6 @@ class Admin extends Model{
         'username',
         'password',
         'name',
-        'id_rekam',
-        'id_update',
         'created_at',
         'updated_at'
     ];

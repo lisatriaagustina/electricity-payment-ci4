@@ -47,9 +47,7 @@ class CustomerController extends BaseController
             'password'      => $user['password'],
             'kwh_number'    => $this->request->getVar('kwh_number'),
             'name'          => $this->request->getVar('name'),
-            'address'       => $this->request->getVar('address'),
-            'id_rekam'      => $user['id_rekam'],
-            'id_update'     => session()->get('id_user')
+            'address'       => $this->request->getVar('address')
         ];
 
         $customerModel->update($param, $data);

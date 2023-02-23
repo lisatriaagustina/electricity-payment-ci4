@@ -11,7 +11,5 @@ class Rates extends Model{
         'class_code',
         'power',
         'ratesperkwh',
-        'id_rekam',
-        'id_update',
     ];
 }

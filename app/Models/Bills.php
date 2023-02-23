@@ -13,8 +13,6 @@ class Bills extends Model{
         'id_customer',
         'status',
         // 'amount',
-        'id_rekam',
-        'id_update',
         'created_at',
         'updated_at',
     ];

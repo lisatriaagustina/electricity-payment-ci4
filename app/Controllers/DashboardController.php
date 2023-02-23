@@ -49,9 +49,7 @@ class DashboardController extends BaseController
                 'month'         => $monthNow,
                 'year'          => $yearNow,
                 'initial_meter' => $initial_meter,
-                'final_meter'   => $final_meter,
-                'id_rekam'      => $session->get('id_user'),
-                'id_update'     => $session->get('id_user')
+                'final_meter'   => $final_meter
             ];
 
             // d($usesData);
@@ -63,8 +61,6 @@ class DashboardController extends BaseController
                 'id_uses'       => $usesModel->getInsertID(),
                 'id_customer'   => $customer['id_customer'],
                 // 'amount'        => $customer['ratesperkwh'] * ($final_meter - $initial_meter),
-                'id_rekam'      => $session->get('id_user'),
-                'id_update'     => $session->get('id_user')
             ];
 
             $billModel->save($billData);
