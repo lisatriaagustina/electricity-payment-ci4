@@ -22,8 +22,6 @@ class RegisterController extends BaseController
     {
         $session = session();
         // custom validasi
-        echo "add";
-        die;
         if (!$this->validate([
             'username'      => 'required|is_unique[admin.username]|is_unique[customers.username]',
             'password'      => 'required',
