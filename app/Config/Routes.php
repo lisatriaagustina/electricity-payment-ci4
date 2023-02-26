@@ -29,8 +29,6 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'DashboardController::index', ['filter' => 'authGuard']);
-$routes->post('/', 'DashboardController::genUses');
 
 // Route without login
 $routes->get('/login', 'LoginController::index', ['filter' => 'userGuard']);
@@ -39,22 +37,26 @@ $routes->post('/logout', 'LoginController::logout');
 $routes->get('/register', 'RegisterController::index', ['filter' => 'userGuard']);
 $routes->post('/register', 'RegisterController::addCustomer');
 
+
 // Route with login
+$routes->get('/', 'DashboardController::index', ['filter' => 'authGuard']);
+$routes->get('/pay-electricity', 'PayElectricityController::index', ['filter' => 'authGuard']);
+$routes->post('/pay-electricity', 'PayElectricityController::pay', ['filter' => 'authGuard']);
 
 // Route with login admin
+$routes->post('/', 'DashboardController::genUses');
 $routes->get('/manage-admin', 'AdminController::manageAdmin');
 $routes->post('/manage-admin', 'AdminController::addAdmin');
 $routes->get('/manage-customer', 'CustomerController::index');
 $routes->post('/manage-customer', 'RegisterController::addCustomer');
 $routes->post('/update-customer/(:any)', 'CustomerController::updateCustomer/$1');
 $routes->post('/update-status-payment/(:any)', 'VerifValidationController::updatePayment/$1');
+$routes->post('/reject-status-payment/(:any)', 'VerifValidationController::rejectPayment/$1');
 $routes->get('/verification-and-validation', 'VerifValidationController::index');
 $routes->get('/verification-and-validation/(:any)', 'VerifValidationController::viewVerif/$1');
 
-$routes->get('/pay-electricity', 'PayElectricityController::index', ['filter' => 'authGuard']);
-$routes->post('/pay-electricity', 'PayElectricityController::pay', ['filter' => 'authGuard']);
-
 $routes->get('/generate-report', 'GenerateReportController::index', ['filter' => 'authGuard']);
+$routes->post('/generate-report', 'GenerateReportController::pdf');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

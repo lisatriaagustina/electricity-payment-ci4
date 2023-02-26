@@ -4,6 +4,11 @@
 <!-- Dashboard Admin -->
 <?php if (session()->get('role') == 'admin') : ?>
     <h2 class="mb-4">Dashboard Admin</h2>
+    <?php if (session()->getFlashdata('msg-gen-penggunaan')) : ?>
+        <div class="alert alert-success mt-3 text-left">
+            <?= session()->getFlashdata('msg-gen-penggunaan') ?>
+        </div>
+    <?php endif; ?>
     <div class="row d-flex justify-content-between">
         <div class="col text-right">
             <form action="/" method="post">

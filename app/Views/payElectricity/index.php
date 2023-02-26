@@ -70,7 +70,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">Payment details</h6>
                 </div>
                 <div class="card-body">
-                    <!-- SUCCESS / PROCESS -->
+                    <!-- SUCCESS, PROCESS -->
                     <?php if ($detail_bill['status'] == 'success' || $detail_bill['status'] == 'process') : ?>
                         <div class="row">
                             <div class="col-5 font-weight-bold">Payment time</div>
@@ -107,10 +107,15 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                    <!-- PENDING -->
-                    <?php if ($detail_bill['status'] == 'pending') : ?>
+                    <!-- PENDING, REJECT -->
+                    <?php if ($detail_bill['status'] == 'pending' || $detail_bill['status'] == 'reject') : ?>
                         <form action="/pay-electricity" method="post" enctype="multipart/form-data">
                             <input type="hidden" value="<?= $detail_bill['id_bill'] ?>" name="id_bill">
+                            <?php if ($detail_bill['status'] == 'reject') : ?>
+                                <div class="alert alert-danger mt-2 text-center w-100">
+                                    Your payment was rejected, please correct the proof of payment data
+                                </div>
+                            <?php endif; ?>
                             <div class="row mb-2">
                                 <div class="col-4 font-weight-bold">Bank</div>
                                 <div class="col">
@@ -122,14 +127,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div class="row">
-                            <div class="col-4 font-weight-bold">Bank Account Number</div>
-                            <div class="col">
-                                <div class="input-group mb-3">
-                                    <span id="bank-detail">-</span>
-                                </div>
-                            </div>
-                        </div> -->
                             <div class="row">
                                 <div class="col-4 font-weight-bold">Total pay</div>
                                 <div class="col">
@@ -142,10 +139,10 @@
                                 <div class="col-5 font-weight-bold">Proof of payment</div>
                                 <div class="col-7">: </div>
                                 <div class="col">
-                                    <input type="file" name="payPhoto" required />
+                                    <input type="file" name="payPhoto" required class="dropify" data-height="300" data-allowed-file-extensions="png jpg jpeg" />
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end mt-3">
                                 <button class="btn btn-primary w-25 ml-2" type="submit">Pay</button>
                             </div>
                         </form>

@@ -29,7 +29,7 @@
                     <td><?= $bill['month'] ?></td>
                     <td><?= $bill['year'] ?></td>
                     <td><?= $bill['final_meter'] - $bill['initial_meter'] ?></td>
-                    <td><?= "Rp " . number_format($bill['ratesperkwh'] * ($bill['final_meter'] - $bill['initial_meter']), 2, ',', '.') ?></td>
+                    <td><?= "Rp " . number_format(($bill['ratesperkwh'] * ($bill['final_meter'] - $bill['initial_meter']) + $admin_fee), 2, ',', '.') ?></td>
                     <td><?= $bill['status'] ?></td>
                     <td>
                         <a href="/verification-and-validation/<?= $bill['id_bill'] ?>" class="btn btn-primary" style="color:white;">Detail</a>

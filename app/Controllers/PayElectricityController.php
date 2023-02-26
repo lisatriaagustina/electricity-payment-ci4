@@ -42,7 +42,15 @@ class PayElectricityController extends BaseController
             'picture'       => '/images/proofPayment/'.$newFileName,
         ];
 
-        $paymentModel->save($data);
+        $oldPaymentData = $paymentModel->where('id_bill', $this->request->getVar('id_bill'))->first();
+
+        if($oldPaymentData){
+            $paymentModel->update($oldPaymentData['id_payment'], $data);
+            unlink('.'.$oldPaymentData['picture']);
+        }else{
+            $paymentModel->save($data);
+        }
+
         $billModel->set('status', 'process')->where('id_bill', $this->request->getVar('id_bill'))->update();
 
         session()->setFlashdata('msg-pay', 'Payment successful, please wait for admin confirmation.');

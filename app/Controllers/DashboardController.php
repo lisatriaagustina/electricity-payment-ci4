@@ -10,6 +10,7 @@ class DashboardController extends BaseController
 {
     public function index()
     {
+        // return view('generateReport/table_report');
         return view('dashboard');
         // echo "tes";
     }
@@ -20,7 +21,6 @@ class DashboardController extends BaseController
         $customerModel = new Customers();
         $usesModel = new Uses();
         $billModel = new Bills();
-        $session = session();
 
         $customers = $customerModel->join('rates', 'customers.id_rates = rates.id_rates', 'left')->findAll();
         foreach ($customers as $customer) {
@@ -64,8 +64,8 @@ class DashboardController extends BaseController
             ];
 
             $billModel->save($billData);
-            
         }
+        session()->setFlashdata('msg-gen-penggunaan', 'Sukses generate penggunaan dan tagihan untuk semua user bulan ini');
         return redirect()->to('/');
     }
 }

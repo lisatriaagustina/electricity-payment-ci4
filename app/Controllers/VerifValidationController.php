@@ -10,8 +10,10 @@ class VerifValidationController extends BaseController
     public function index()
     {
         $billModel = new Bills();
+        $adminFee = 10000;
         $data = [
-            'bills'     => $billModel->join('customers', 'customers.id_customer = bills.id_customer', 'left')->join('rates', 'customers.id_rates = rates.id_rates', 'left')->join('uses', 'uses.id_uses = bills.id_uses', 'left')->findAll()
+            'bills'     => $billModel->join('customers', 'customers.id_customer = bills.id_customer', 'left')->join('rates', 'customers.id_rates = rates.id_rates', 'left')->join('uses', 'uses.id_uses = bills.id_uses', 'left')->findAll(),
+            'admin_fee'     => $adminFee,
         ];
         // dd($data['bills']);
         return view('verificationValidation/index', $data);
@@ -35,6 +37,14 @@ class VerifValidationController extends BaseController
     {
         $billModel = new Bills();
         $billModel->set('status', 'success')->where('id_bill', $param)->update();
+
+        return redirect()->to('/verification-and-validation');
+    }
+
+    public function rejectPayment($param)
+    {
+        $billModel = new Bills();
+        $billModel->set('status', 'reject')->where('id_bill', $param)->update();
 
         return redirect()->to('/verification-and-validation');
     }

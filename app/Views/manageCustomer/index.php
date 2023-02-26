@@ -7,6 +7,16 @@
         Register Customers
     </button>
 </div>
+<?php if (session()->getFlashdata('msg-manage-customer')) : ?>
+    <div class="alert alert-success mt-3 text-left">
+        <?= session()->getFlashdata('msg-manage-customer') ?>
+    </div>
+<?php endif; ?>
+<?php if (session()->getFlashdata('err-manage-customer')) : ?>
+    <div class="alert alert-danger mt-3 text-left">
+        <?= session()->getFlashdata('err-manage-customer') ?>
+    </div>
+<?php endif; ?>
 <?php if (session()->getFlashdata('msg-add-customer')) : ?>
     <div class="alert alert-success mt-3 text-left">
         <?= session()->getFlashdata('msg-add-customer') ?>

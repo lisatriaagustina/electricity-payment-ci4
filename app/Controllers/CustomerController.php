@@ -26,11 +26,12 @@ class CustomerController extends BaseController
         // custom validasi
         $user = $customerModel->find($param);
         $lastusername = $user['username'];
+        $lastKwhNumber = $user['kwh_number'];
 
         if (!$this->validate([
-            'username'      => 'required|is_unique[customers.username,customers.username,'.$lastusername.']|is_unique[admin.username,admin.username,'.$lastusername.']',
+            'username'      => 'required|is_unique[customers.username,customers.username,'.$lastusername.']|is_unique[admin.username,admin.username,'.$lastusername.']|regex_match[/^\S+$/]',
             'rates'         => 'required',
-            'kwh_number'    => 'required',
+            'kwh_number'    => 'required|is_unique[customers.kwh_number,customers.kwh_number,'.$lastKwhNumber.']',
             'name'          => 'required',
             'address'       => 'required',
         ])) {
@@ -51,6 +52,7 @@ class CustomerController extends BaseController
         ];
 
         $customerModel->update($param, $data);
+        $session->setFlashdata('msg-manage-customer', 'Success update customer');
         return redirect()->to('/manage-customer');
     }
 }

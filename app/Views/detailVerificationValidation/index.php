@@ -68,8 +68,8 @@
                     <h3>The customer has not paid</h3>
                 <?php endif; ?>
 
-                <!-- PROCESS -->
-                <?php if ($detail_bill['status'] == 'process' || $detail_bill['status'] == 'success') : ?>
+                <!-- PROCESS, SUCCESS, REJECT -->
+                <?php if ($detail_bill['status'] == 'process' || $detail_bill['status'] == 'success' || $detail_bill['status'] == 'reject') : ?>
                     <div class="row">
                         <div class="col-5 font-weight-bold">Payment time</div>
                         <div class="col">: <?= $detail_payment['pay_date'] ?></div>
@@ -104,12 +104,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button class="btn btn-danger w-25">Reject</button>
-                        <form action="/update-status-payment/<?= $detail_payment['id_bill'] ?>" method="post" class="w-25">
-                            <button class="btn btn-primary w-100 ml-2">Accept</button>
-                        </form>
-                    </div>
+
+                    <?php if ($detail_bill['status'] == 'reject') : ?>
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <div class="alert alert-danger mt-2 text-center w-100">
+                                Payment rejected !
+                            </div>
+                            <form action="/update-status-payment/<?= $detail_payment['id_bill'] ?>" method="post" class="w-100">
+                                <button class="btn btn-primary w-100" type="submit">Undo and receive payment</button>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($detail_bill['status'] == 'process') : ?>
+                        <div class="d-flex justify-content-end">
+                            <form action="/reject-status-payment/<?= $detail_payment['id_bill'] ?>" method="post">
+                                <button class="btn btn-danger w-100" type="submit">Reject</button>
+                            </form>
+                            <form action="/update-status-payment/<?= $detail_payment['id_bill'] ?>" method="post" class="w-25">
+                                <button class="btn btn-primary w-100 ml-2" type="submit">Accept</button>
+                            </form>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
 
             </div>
