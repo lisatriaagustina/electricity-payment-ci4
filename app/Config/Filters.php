@@ -10,6 +10,8 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\AuthGuard;
 use App\Filters\UserGuard;
+use App\Filters\AdminGuard;
+use App\Filters\CustomerGuard;
 
 class Filters extends BaseConfig
 {
@@ -24,7 +26,15 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'authGuard'     => AuthGuard::class,
-        'userGuard'     => UserGuard::class
+        'userGuard'     => UserGuard::class,
+        'adminGuard'    => [
+            AuthGuard::class,
+            AdminGuard::class
+        ],
+        'customerGuard' => [
+            AuthGuard::class,
+            CustomerGuard::class
+        ]
     ];
 
     /**

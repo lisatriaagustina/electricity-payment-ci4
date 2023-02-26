@@ -38,15 +38,15 @@
         <!-- <thead> -->
         <tr>
             <th class="tdth-report" style="width: 3%">No</th>
-            <th class="tdth-report">Customer name</th>
-            <th class="tdth-report">kWh number</th>
-            <th class="tdth-report">Total meter</th>
+            <th class="tdth-report">Customer Name</th>
+            <th class="tdth-report">kWh Number</th>
+            <th class="tdth-report">Total Meter</th>
             <th class="tdth-report" style="width: 11%">Ratesperkwh</th>
-            <th class="tdth-report">Admin fee</th>
-            <th class="tdth-report" style="width: 13%">Total bill</th>
-            <th class="tdth-report">Bank payment</th>
-            <th class="tdth-report">Pay date</th>
-            <th class="tdth-report" style="width: 11%">Total pay</th>
+            <th class="tdth-report">Admin Fee</th>
+            <th class="tdth-report" style="width: 13%">Total Bill</th>
+            <th class="tdth-report">Bank Payment</th>
+            <th class="tdth-report">Pay Date</th>
+            <th class="tdth-report" style="width: 11%">Total Pay</th>
         </tr>
         <!-- </thead> -->
         <!-- <tbody> -->
