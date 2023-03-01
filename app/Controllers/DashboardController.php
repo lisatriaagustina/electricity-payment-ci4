@@ -14,7 +14,8 @@ class DashboardController extends BaseController
         $customerModel =  new Customers();
         $data = [
             'count_admin'       => $adminModel->countAll(),
-            'count_customer'    => $customerModel->countALl()
+            'count_customer'    => $customerModel->where('is_active', '1')->countAllResults(),
+            'count_non_active_user'    => $customerModel->where('is_active', '0')->countAllResults()
         ];
         session()->set('menu-active', 'dashboard');
         return view('dashboard', $data);
@@ -27,10 +28,10 @@ class DashboardController extends BaseController
         $usesModel = new Uses();
         $billModel = new Bills();
 
-        $customers = $customerModel->join('rates', 'customers.id_rates = rates.id_rates', 'left')->findAll();
+        $customers = $customerModel->join('rates', 'customers.id_rates = rates.id_rates', 'left')->where('customers.is_active', '1')->findAll();
         foreach ($customers as $customer) {
             // cek user apakah sudah ada penggunaan bulan dan tahun ini ?
-            $monthNow = date('m');
+            $monthNow = (string)intval(date('m'));
             $yearNow = date('Y');
             $customerUses = $usesModel->where('id_customer', $customer['id_customer'])->where('month', $monthNow)->where('year', $yearNow)->first();
 
