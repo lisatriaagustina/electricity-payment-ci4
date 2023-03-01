@@ -57,9 +57,17 @@
                     <td><?= $customer['power'] ?></td>
                     <td><?= "Rp " . number_format($customer['ratesperkwh'], 2, ',', '.') ?></td>
                     <td>
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#edit-user-<?= $customer['id_customer'] ?>">
-                            <img src="/images/edit-user.png" width="25px">
-                        </button>
+                        <div class="d-flex">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#edit-user-<?= $customer['id_customer'] ?>">
+                                <img src="/images/edit-user.png" width="25px">
+                            </button>
+
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#delete-user-<?= $customer['id_customer'] ?>">
+                                <img src="/images/delete-user.png" width="25px">
+                            </button>
+                        </div>
+
+                        <!-- Modal Edit Customer -->
                         <div class="modal fade" id="edit-user-<?= $customer['id_customer'] ?>" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -101,6 +109,29 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Delete Customer -->
+                        <div id="delete-user-<?= $customer['id_customer'] ?>" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Konten modal-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Hapus Customer ?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Anda yakin ingin menghapus customer ini ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                                        <form action="/delete-customer/<?= $customer['id_customer'] ?>" method="post">
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 

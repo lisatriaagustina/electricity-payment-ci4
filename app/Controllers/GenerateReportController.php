@@ -11,7 +11,7 @@ class GenerateReportController extends BaseController
     public function index()
     {
         $paymentModel = new Payment();
-        $monthNow = date('m');
+        $monthNow = (string)intval(date('m'));
         $yearNow = date('Y');
         $dataReport = $paymentModel->join('bills', 'bills.id_bill = payments.id_bill', 'left')
             ->join('customers', 'customers.id_customer = payments.id_customer', 'left')
@@ -21,13 +21,15 @@ class GenerateReportController extends BaseController
             ->where('uses.month', $monthNow)
             ->where('uses.year', $yearNow)
             ->findAll();
+
+        // dd($monthNow);
         $admin_fee = 10000;
         $data = [
             'data_report' => $dataReport,
             'admin_fee'   => $admin_fee
         ];
 
-        // dd($dataReport);
+        session()->set('menu-active', 'generate-report');
         return view('generateReport/index', $data);
     }
 

@@ -30,6 +30,10 @@ html, body {
     font-style: normal; */
 }
 
+.active{
+  font-weight: 600;
+}
+
 
 
 

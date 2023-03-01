@@ -5,14 +5,19 @@ namespace App\Controllers;
 use App\Models\Customers;
 use App\Models\Uses;
 use App\Models\Bills;
-
+use App\Models\Admin;
 class DashboardController extends BaseController
 {
     public function index()
     {
-        // return view('generateReport/table_report');
-        return view('dashboard');
-        // echo "tes";
+        $adminModel = new Admin();
+        $customerModel =  new Customers();
+        $data = [
+            'count_admin'       => $adminModel->countAll(),
+            'count_customer'    => $customerModel->countALl()
+        ];
+        session()->set('menu-active', 'dashboard');
+        return view('dashboard', $data);
     }
 
     public function genUses()

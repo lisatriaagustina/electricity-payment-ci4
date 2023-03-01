@@ -15,6 +15,7 @@ class Customers extends Model{
         'kwh_number',
         'name',
         'address',
+        'is_active',
         'created_at',
         'updated_at',
     ];

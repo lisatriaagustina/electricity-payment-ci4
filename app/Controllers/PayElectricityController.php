@@ -22,6 +22,7 @@ class PayElectricityController extends BaseController
             'admin_fee'     => $adminFee,
             'detail_payment'=> $paymentModel->join('bank', 'bank.id_bank = payments.id_bank')->where('id_customer', session()->get('id_user'))->first()
         ];
+        session()->set('menu-active', 'pay-electricity');
         return view('payElectricity/index', $data);
     }
 

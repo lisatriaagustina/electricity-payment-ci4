@@ -50,7 +50,7 @@ class LoginController extends BaseController
         if (!$user) {
             // panggil model / tabel pelanggan dan cari user, digabung dengan tabel roles untuk mengambil nama role nya
             $customersModel = new Customers();
-            $user = $customersModel->where('username', $username)->first();
+            $user = $customersModel->where('username', $username)->where('is_active', 1)->first();
             if ($user) {
                 $data_session = [
                     'id_user'   => $user['id_customer'],

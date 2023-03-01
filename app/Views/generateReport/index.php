@@ -4,7 +4,7 @@
 <h2 class="mb-4">Generate Report</h2>
 <div class="d-flex w-100 justify-content-end mb-2">
     <form action="/generate-report" method="post">
-        <button type="submit" class="btn btn-primary text-white">
+        <button type="submit" class="btn btn-primary text-white" <?= count($data_report) > 0 ? '' : 'disabled' ?>>
             Generate Report Pdf
         </button>
     </form>

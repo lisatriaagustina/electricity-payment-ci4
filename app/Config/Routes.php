@@ -59,6 +59,7 @@ $routes->post('/update-customer/(:any)', 'CustomerController::updateCustomer/$1'
 $routes->post('/update-status-payment/(:any)', 'VerifValidationController::updatePayment/$1');
 $routes->post('/reject-status-payment/(:any)', 'VerifValidationController::rejectPayment/$1');
 $routes->post('/generate-report', 'GenerateReportController::pdf');
+$routes->post('/delete-customer/(:any)', 'CustomerController::delete/$1');
 
 // customer
 $routes->post('/pay-electricity', 'PayElectricityController::pay');

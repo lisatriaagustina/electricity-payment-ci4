@@ -16,6 +16,7 @@ class VerifValidationController extends BaseController
             'admin_fee'     => $adminFee,
         ];
         // dd($data['bills']);
+        session()->set('menu-active', 'verification-and-validation');
         return view('verificationValidation/index', $data);
     }
 

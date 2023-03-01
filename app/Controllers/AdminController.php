@@ -12,6 +12,7 @@ class AdminController extends BaseController
         $data = [
             'listAdmin' => $adminModel->join('roles', 'roles.id_role = admin.id_role', 'left')->findAll()
         ];
+        session()->set('menu-active', 'manage-admin');
         return view('manageAdmin/index', $data);
     }
 

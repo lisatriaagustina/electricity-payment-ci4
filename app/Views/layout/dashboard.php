@@ -16,20 +16,20 @@
 
                     <!-- menu admin -->
                     <?php if (session()->get('role') == 'admin') : ?>
-                        <li class="">
-                            <a href="/"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
+                        <li class="<?= session()->get('menu-active') == 'dashboard' ? 'active' : '' ?>">
+                            <a href="/"><span class="fa fa-dashboard mr-3 <?= session()->get('menu-active') == 'dashboard' ? 'text-white' : '' ?>"></span>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="/manage-admin"><span class="fa fa-cogs mr-3"></span>Manage Admin</a>
+                        <li class="<?= session()->get('menu-active') == 'manage-admin' ? 'active' : '' ?>">
+                            <a href="/manage-admin"><span class="fa fa-cogs mr-3 <?= session()->get('menu-active') == 'manage-admin' ? 'text-white' : '' ?>"></span>Manage Admin</a>
                         </li>
-                        <li>
-                            <a href="/manage-customer"><span class="fa fa-users mr-3"></span>Manage Customer</a>
+                        <li class="<?= session()->get('menu-active') == 'manage-customer' ? 'active' : '' ?>">
+                            <a href="/manage-customer"><span class="fa fa-users mr-3 <?= session()->get('menu-active') == 'manage-customer' ? 'text-white' : '' ?>"></span>Manage Customer</a>
                         </li>
-                        <li>
-                            <a href="/verification-and-validation"><span class="fa fa-check-circle-o mr-3"></span>Verification & Validation</a>
+                        <li class="<?= session()->get('menu-active') == 'verification-and-validation' ? 'active' : '' ?>">
+                            <a href="/verification-and-validation"><span class="fa fa-check-circle-o mr-3 <?= session()->get('menu-active') == 'verification-and-validation' ? 'text-white' : '' ?>"></span>Verification & Validation</a>
                         </li>
-                        <li>
-                            <a href="/generate-report"><span class="fa fa-file-pdf-o mr-3"></span>Generate Report</a>
+                        <li class="<?= session()->get('menu-active') == 'generate-report' ? 'active' : '' ?>">
+                            <a href="/generate-report"><span class="fa fa-file-pdf-o mr-3 <?= session()->get('menu-active') == 'generate-report' ? 'text-white' : '' ?>"></span>Generate Report</a>
                         </li>
                     <?php endif; ?>
 
@@ -51,11 +51,11 @@
 
                     <!-- menu customer -->
                     <?php if (session()->get('role') == 'customer') : ?>
-                        <li class="">
-                            <a href="/"><span class="fa fa-dashboard mr-3"></span>Dashboard</a>
+                        <li class="<?= session()->get('menu-active') == 'dashboard' ? 'active' : '' ?>">
+                            <a href="/"><span class="fa fa-dashboard mr-3 <?= session()->get('menu-active') == 'dashboard' ? 'text-white' : '' ?>"></span>Dashboard</a>
                         </li>
-                        <li>
-                            <a href="/pay-electricity"><span class="fa fa-money mr-3"></span>Pay Electricity</a>
+                        <li class="<?= session()->get('menu-active') == 'pay-electricity' ? 'active' : '' ?>">
+                            <a href="/pay-electricity"><span class="fa fa-money mr-3 <?= session()->get('menu-active') == 'pay-electricity' ? 'text-white' : '' ?>"></span>Pay Electricity</a>
                         </li>
                     <?php endif; ?>
 
