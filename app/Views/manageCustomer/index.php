@@ -119,10 +119,10 @@
                                 <!-- Konten modal-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Hapus Customer ?</h4>
+                                        <h4 class="modal-title">Nonaktifkan Customer ?</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Anda yakin ingin menghapus customer ini ?</p>
+                                        <p>Anda yakin ingin menonaktifkan customer ini ?</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
