@@ -25,6 +25,9 @@
                         <li class="<?= session()->get('menu-active') == 'manage-customer' ? 'active' : '' ?>">
                             <a href="/manage-customer"><span class="fa fa-users mr-3 <?= session()->get('menu-active') == 'manage-customer' ? 'text-white' : '' ?>"></span>Manage Customer</a>
                         </li>
+                        <li class="<?= session()->get('menu-active') == 'user-not-active' ? 'active' : '' ?>">
+                            <a href="/user-non-active"><span class="fa fa-user-times mr-3 <?= session()->get('menu-active') == 'user-not-active' ? 'text-white' : '' ?>"></span>User Not Active</a>
+                        </li>
                         <li class="<?= session()->get('menu-active') == 'verification-and-validation' ? 'active' : '' ?>">
                             <a href="/verification-and-validation"><span class="fa fa-check-circle-o mr-3 <?= session()->get('menu-active') == 'verification-and-validation' ? 'text-white' : '' ?>"></span>Verification & Validation</a>
                         </li>

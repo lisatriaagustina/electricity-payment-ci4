@@ -43,7 +43,8 @@ $routes->get('/manage-admin', 'AdminController::manageAdmin', ['filter' => 'admi
 $routes->get('/manage-customer', 'CustomerController::index', ['filter' => 'adminGuard']);
 $routes->get('/verification-and-validation', 'VerifValidationController::index', ['filter' => 'adminGuard']);
 $routes->get('/verification-and-validation/(:any)', 'VerifValidationController::viewVerif/$1', ['filter' => 'adminGuard']);
-$routes->get('/generate-report', 'GenerateReportController::index', ['filter' => 'authGuard']);
+$routes->get('/generate-report', 'GenerateReportController::index', ['filter' => 'adminGuard']);
+$routes->get('/user-non-active', 'CustomerController::notActiveUser', ['filter' => 'adminGuard']);
 
 // stytem route
 // global
@@ -60,6 +61,7 @@ $routes->post('/update-status-payment/(:any)', 'VerifValidationController::updat
 $routes->post('/reject-status-payment/(:any)', 'VerifValidationController::rejectPayment/$1');
 $routes->post('/generate-report', 'GenerateReportController::pdf');
 $routes->post('/delete-customer/(:any)', 'CustomerController::delete/$1');
+$routes->post('/activate-customer/(:any)', 'CustomerController::activate/$1');
 
 // customer
 $routes->post('/pay-electricity', 'PayElectricityController::pay');

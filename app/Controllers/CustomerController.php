@@ -14,7 +14,8 @@ class CustomerController extends BaseController
         $ratesModel = new Rates();
         $data = [
             'customers' => $customerModel->join('rates', 'rates.id_rates = customers.id_rates', 'left')->where('customers.is_active', '1')->findAll(),
-            'rates'     => $ratesModel->findAll()
+            'rates'     => $ratesModel->findAll(),
+            'status'    => 'active'
         ];
         session()->set('menu-active', 'manage-customer');
         return view('manageCustomer/index', $data);
@@ -72,5 +73,26 @@ class CustomerController extends BaseController
         $customerModel->set('is_active', '0')->where('id_customer', $id_customer)->update();
         session()->setFlashdata('msg-manage-customer', 'Success menonaktifkan user');
         return redirect()->to('/manage-customer');
+    }
+
+    public function notActiveUser()
+    {
+        $customerModel = new Customers();
+        $ratesModel = new Rates();
+        $data = [
+            'customers' => $customerModel->join('rates', 'rates.id_rates = customers.id_rates', 'left')->where('customers.is_active', '0')->findAll(),
+            'rates'     => $ratesModel->findAll(),
+            'status'    => 'not-active'
+        ];
+        session()->set('menu-active', 'user-not-active');
+        return view('manageCustomer/index', $data);
+    }
+
+    public function activate($id_customer)
+    {
+        $customerModel = new Customers();
+        $customerModel->set('is_active', '1')->where('id_customer', $id_customer)->update();
+        session()->setFlashdata('msg-manage-customer', 'Success mengaktifkan user');
+        return redirect()->to('/user-non-active');
     }
 }
